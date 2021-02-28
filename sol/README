@@ -1,0 +1,24 @@
+    Mihu Florin - 334CC
+    Tema 1 - APD
+
+    Pentru inceput am luat numarul de threaduri din argumentele programului si 
+am creat un vector de threaduri, care ruleaza functia run_julia_and_mandelbrot.
+    Din argumentul functiei am luat ID-ul threadului curent, folosit pentru 
+calcularea limitelor start si end.
+    La inceput un singur thread citeste parametrii de intrare pentru algoritmul 
+Julia. Apoi, se calculeaza indecsii de inceput si sfarsit pentru alocarea 
+matricei, conform unei formule matematice. Fiecare thread aloca o multime de 
+linii din matricea ce va contine rezultatul.
+    Se recalculeaza pozitiile de start si end pentru algoritmul Julia, in 
+functie de numarul de elemente de pe o linie. Se ruleaza algoritmul Julia, iar 
+rezultatul obtinut la fiecare pas este scris pe linia height - h - 1, pentru a 
+optimiza transformarea coordonatelor  matematice in coordonate ecran. De 
+asemenea, o alta optimizare o constituie inlocuirea functiilor pow si sqrt.
+    Dupa asteptarea tuturor threadurilor la o bariera, se scrie rezultatul in 
+fisierul de iesire, utilizandu-se threadul 0, apoi threadurile asteapta la o 
+noua bariera.
+    In mod asemanator alocarii, se face si dezalocarea matricei, numarul de 
+linii impartindu-se in mod aproximativ egal la numarul de threaduri.
+    Similar se procedeaza si pentru algoritmul Mandelbrot.
+    La final, in functia main, se face join pentru toate threadurile create si 
+se elibereaza memoria alocata pentru bariera.
